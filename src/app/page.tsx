@@ -1,101 +1,149 @@
-import Image from "next/image";
+import { AppConfig } from "@/config/app-config";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { ArrowRight, Sparkles, Zap, Shield, Palette } from "lucide-react";
+import Link from "next/link";
 
-export default function Home() {
+export default function HomePage() {
+  const features = [
+    {
+      icon: <Zap className="w-6 h-6" />,
+      title: "Lightning Fast",
+      description: "Next.js 14 + React 18로 최적화된 성능",
+    },
+    {
+      icon: <Shield className="w-6 h-6" />,
+      title: "Production Ready",
+      description: "보안, 인증, 데이터베이스까지 완벽 지원",
+    },
+    {
+      icon: <Palette className="w-6 h-6" />,
+      title: "Customizable",
+      description: "설정 파일로 쉽게 브랜딩 & 메뉴 변경",
+    },
+    {
+      icon: <Sparkles className="w-6 h-6" />,
+      title: "Modern UI",
+      description: "shadcn/ui + Tailwind CSS 완벽 다크모드",
+    },
+  ];
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+      <div className="container mx-auto px-4 py-16">
+        {/* Hero Section */}
+        <div className="text-center space-y-8 mb-16">
+          <div className="space-y-4">
+            <div className="text-6xl mb-4">{AppConfig.branding.logo.icon}</div>
+            <Badge variant="secondary" className="mb-4">
+              v{AppConfig.app.version} • Next.js 14
+            </Badge>
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
+              <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+                {AppConfig.app.name}
+              </span>
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              {AppConfig.app.description}
+            </p>
+          </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button asChild size="lg" className="text-lg px-8">
+              <Link href="/dashboard">
+                시작하기 <ArrowRight className="ml-2 w-5 h-5" />
+              </Link>
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              asChild
+              className="text-lg px-8"
+            >
+              <Link href="/docs">문서 보기</Link>
+            </Button>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Features Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          {features.map((feature, index) => (
+            <Card
+              key={index}
+              className="text-center hover:shadow-lg transition-shadow"
+            >
+              <CardHeader>
+                <div className="mx-auto w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-4">
+                  {feature.icon}
+                </div>
+                <CardTitle className="text-lg">{feature.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription>{feature.description}</CardDescription>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Template Showcase */}
+        <div className="text-center space-y-8">
+          <div>
+            <h2 className="text-3xl font-bold mb-4">다양한 템플릿 지원</h2>
+            <p className="text-muted-foreground">
+              설정 파일 하나로 다양한 형태의 웹 애플리케이션으로 변신
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
+            {[
+              { name: "Admin", desc: "관리자 패널", icon: "🛠️" },
+              { name: "CRM", desc: "고객 관리", icon: "👥" },
+              { name: "E-commerce", desc: "온라인 쇼핑몰", icon: "🛒" },
+              { name: "Blog", desc: "블로그 플랫폼", icon: "📝" },
+              { name: "SaaS", desc: "서비스 플랫폼", icon: "🚀" },
+            ].map((template, index) => (
+              <Card key={index} className="hover:shadow-md transition-shadow">
+                <CardContent className="p-6 text-center">
+                  <div className="text-3xl mb-3">{template.icon}</div>
+                  <h3 className="font-semibold mb-1">{template.name}</h3>
+                  <p className="text-sm text-muted-foreground">
+                    {template.desc}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Tech Stack */}
+        <div className="mt-16 text-center">
+          <h3 className="text-lg font-semibold text-muted-foreground mb-6">
+            최신 기술 스택으로 구축됨
+          </h3>
+          <div className="flex flex-wrap justify-center gap-4 text-sm">
+            {[
+              "Next.js 14",
+              "React 18",
+              "TypeScript",
+              "Tailwind CSS",
+              "shadcn/ui",
+              "Prisma",
+              "NextAuth.js",
+            ].map((tech) => (
+              <Badge key={tech} variant="outline">
+                {tech}
+              </Badge>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
